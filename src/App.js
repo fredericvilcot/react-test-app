@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { CounterFunction } from "./counterFunction";
-import CounterClass from "./counterClass";
+import { CounterFunction } from "./components/counter/counterFunction";
+import CounterClass from "./components/counter/counterClass";
 import "./App.css";
 
 function App() {
