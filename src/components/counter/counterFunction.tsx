@@ -2,12 +2,19 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 
 import "./counter.css";
 
-export const CounterFunction = ({ maxCount, minCount }) => {
+interface ICounterFunctionProps {
+  maxCount: number;
+  minCount: number;
+}
+
+export const CounterFunction: React.FC<ICounterFunctionProps> = (
+  props: ICounterFunctionProps
+) => {
   const [count, setCount] = useState(0);
   const [hasError, setHasError] = useState(false);
 
-  const handleIncrement = () => {
-    if (count < maxCount) {
+  const handleIncrement = (): void => {
+    if (count < props.maxCount) {
       setCount(count + 1);
       setHasError(false);
     } else {
@@ -15,8 +22,8 @@ export const CounterFunction = ({ maxCount, minCount }) => {
     }
   };
 
-  const handleDecrement = () => {
-    if (count > minCount) {
+  const handleDecrement = (): void => {
+    if (count > props.minCount) {
       setCount(count - 1);
       setHasError(false);
     } else {
@@ -24,21 +31,21 @@ export const CounterFunction = ({ maxCount, minCount }) => {
     }
   };
 
-  const handleReset = () => {
-    setCount(minCount);
+  const handleReset = (): void => {
+    setCount(props.minCount);
     setHasError(false);
   };
 
   useEffect(() => {
-    setCount(7777777777);
+    setCount(77);
     return () => {
       setCount(0);
     };
   }, []);
 
   useLayoutEffect(() => {
-    setCount(minCount);
-  }, [minCount]);
+    setCount(props.minCount);
+  }, [props.minCount]);
 
   return (
     <React.Fragment>
@@ -68,12 +75,11 @@ export const CounterFunction = ({ maxCount, minCount }) => {
           </button>
         </div>
       </div>
-
-      <div className="counter-error-message">
-        {hasError && (
-          <span>{`Hey Dude tou can't go above ${maxCount} or less than ${minCount}`}</span>
-        )}
-      </div>
+      {hasError && (
+        <div className="counter-error-message">
+          <span>{`Hey Dude tou can't go above ${props.maxCount} or less than ${props.minCount}`}</span>
+        </div>
+      )}
     </React.Fragment>
   );
 };

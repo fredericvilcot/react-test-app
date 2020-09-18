@@ -1,7 +1,20 @@
 import React, { PureComponent } from "react";
 
-export default class CounterClass extends PureComponent {
-  constructor(props) {
+interface ICounterClassProps {
+  minCount: number;
+  maxCount: number;
+}
+
+interface ICounterClassState {
+  count: number;
+  hasError: boolean;
+}
+
+export default class CounterClass extends PureComponent<
+  ICounterClassProps,
+  ICounterClassState
+> {
+  constructor(props: ICounterClassProps) {
     super(props);
 
     this.state = {
@@ -10,17 +23,17 @@ export default class CounterClass extends PureComponent {
     };
   }
 
-  componentDidMount = () => {
-    this.setState({ count: 7777777777 });
+  public componentDidMount = () => {
+    this.setState({ count: 77 });
   };
 
-  componentDidUpdate = (prevProps) => {
+  public componentDidUpdate = (prevProps: ICounterClassProps) => {
     if (prevProps.minCount !== this.props.minCount) {
       this.setState({ count: this.props.minCount ?? 0 });
     }
   };
 
-  handleIncrement = () => {
+  private handleIncrement = () => {
     const { count } = this.state;
     const { maxCount } = this.props;
     if (count < maxCount) {
@@ -30,7 +43,7 @@ export default class CounterClass extends PureComponent {
     }
   };
 
-  handleDecrement = () => {
+  private handleDecrement = () => {
     const { count } = this.state;
     const { minCount } = this.props;
     if (count > minCount) {
@@ -40,11 +53,11 @@ export default class CounterClass extends PureComponent {
     }
   };
 
-  handleReset = () => {
+  private handleReset = () => {
     this.setState({ count: this.props.minCount, hasError: false });
   };
 
-  render() {
+  public render() {
     const { hasError, count } = this.state;
     return (
       <React.Fragment>
@@ -74,12 +87,11 @@ export default class CounterClass extends PureComponent {
             </button>
           </div>
         </div>
-
-        <div className="counter-error-message">
-          {hasError && (
+        {hasError && (
+          <div className="counter-error-message">
             <span>{`Hey Dude you can't go above ${this.props.maxCount} or less than ${this.props.minCount} ...`}</span>
-          )}
-        </div>
+          </div>
+        )}
       </React.Fragment>
     );
   }
