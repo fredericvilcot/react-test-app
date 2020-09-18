@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <div className="app-header">
-        <h1 className="app-header-title">Test React Ubleam</h1>
+        <h1 className="app-header-title">Test React</h1>
         <span className="app-header-label">Waouhhhh what cuty counters !</span>
       </div>
       <div className="app-inputs-container">
