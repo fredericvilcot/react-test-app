@@ -28,9 +28,7 @@ export default class CounterClass extends PureComponent<
   };
 
   public componentDidUpdate = (prevProps: ICounterClassProps) => {
-    if (prevProps.minCount !== this.props.minCount) {
-      this.setState({ count: this.props.minCount ?? 0 });
-    }
+    this.setState({ count: this.props.minCount ?? 0 });
   };
 
   private handleIncrement = () => {
@@ -46,11 +44,9 @@ export default class CounterClass extends PureComponent<
   private handleDecrement = () => {
     const { count } = this.state;
     const { minCount } = this.props;
-    if (count > minCount) {
-      this.setState({ count: count - 1, hasError: false });
-    } else {
-      this.setState({ hasError: true });
-    }
+    count > minCount
+      ? this.setState({ count: count - 1, hasError: false })
+      : this.setState({ hasError: true });
   };
 
   private handleReset = () => {

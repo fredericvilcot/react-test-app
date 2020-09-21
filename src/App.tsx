@@ -32,7 +32,7 @@ function App() {
       </div>
       <div style={{ marginTop: "80px" }}>
         <CounterFunction maxCount={max} minCount={min} />
-        <CounterClass maxCount={max} minCount={min} />
+        {/* <CounterClass maxCount={max} minCount={min} /> */}
       </div>
     </div>
   );

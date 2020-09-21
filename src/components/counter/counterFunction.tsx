@@ -77,7 +77,7 @@ export const CounterFunction: React.FC<ICounterFunctionProps> = (
       </div>
       {hasError && (
         <div className="counter-error-message">
-          <span>{`Hey Dude tou can't go above ${props.maxCount} or less than ${props.minCount}`}</span>
+          <span>{`Hey Dude you can't go above ${props.maxCount} or less than ${props.minCount}`}</span>
         </div>
       )}
     </React.Fragment>
